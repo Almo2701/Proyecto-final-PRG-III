@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Proyecto.Models.Permisos>
+
+@{
+    ViewBag.Title = "Buscar";
+}
+
+<h2>Permisos</h2>
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            Busqueda por Codigo de Empleado:@Html.TextBox("Empleado")<br />
+            <input type="submit" value="Buscar" />
+        </p>
+    }
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Comentarios)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha_Inicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha_Final)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Empleados.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comentarios)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha_Inicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha_Final)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Empleados.Nombre)
+        </td>
+        <td>
+        
+        </td>
+    </tr>
+}
+
+</table>

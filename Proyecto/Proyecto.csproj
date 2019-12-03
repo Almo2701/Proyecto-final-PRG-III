@@ -140,8 +140,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ControllersInformes\CargosController.cs" />
+    <Compile Include="Controllers\ControllersInformes\DepartamentoesController.cs" />
+    <Compile Include="Controllers\ControllersInformes\EmpleadosActivosController.cs" />
     <Compile Include="Controllers\ControllersInformes\InformesController.cs" />
     <Compile Include="Controllers\ControllersInformes\NominasController.cs" />
+    <Compile Include="Controllers\ControllersInformes\PermisosController.cs" />
+    <Compile Include="Controllers\ControllersInformes\salidasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -243,6 +248,34 @@
     <Content Include="Views\Nominas\Edit.cshtml" />
     <Content Include="Views\Nominas\Index.cshtml" />
     <Content Include="Views\Nominas\Buscar.cshtml" />
+    <Content Include="Views\EmpleadosActivos\Create.cshtml" />
+    <Content Include="Views\EmpleadosActivos\Delete.cshtml" />
+    <Content Include="Views\EmpleadosActivos\Details.cshtml" />
+    <Content Include="Views\EmpleadosActivos\Edit.cshtml" />
+    <Content Include="Views\EmpleadosActivos\Index.cshtml" />
+    <Content Include="Views\EmpleadosActivos\Buscar.cshtml" />
+    <Content Include="Views\Departamentoes\Create.cshtml" />
+    <Content Include="Views\Departamentoes\Delete.cshtml" />
+    <Content Include="Views\Departamentoes\Details.cshtml" />
+    <Content Include="Views\Departamentoes\Edit.cshtml" />
+    <Content Include="Views\Departamentoes\Index.cshtml" />
+    <Content Include="Views\Permisos\Create.cshtml" />
+    <Content Include="Views\Permisos\Delete.cshtml" />
+    <Content Include="Views\Permisos\Details.cshtml" />
+    <Content Include="Views\Permisos\Edit.cshtml" />
+    <Content Include="Views\Permisos\Index.cshtml" />
+    <Content Include="Views\Permisos\Buscar.cshtml" />
+    <Content Include="Views\Cargos\Create.cshtml" />
+    <Content Include="Views\Cargos\Delete.cshtml" />
+    <Content Include="Views\Cargos\Details.cshtml" />
+    <Content Include="Views\Cargos\Edit.cshtml" />
+    <Content Include="Views\Cargos\Index.cshtml" />
+    <Content Include="Views\salidas\Create.cshtml" />
+    <Content Include="Views\salidas\Delete.cshtml" />
+    <Content Include="Views\salidas\Details.cshtml" />
+    <Content Include="Views\salidas\Edit.cshtml" />
+    <Content Include="Views\salidas\Index.cshtml" />
+    <Content Include="Views\salidas\Buscar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,124 +10,107 @@ using Proyecto.Models;
 
 namespace Proyecto.Controllers.ControllersInformes
 {
-    public class NominasController : Controller
+    public class DepartamentoesController : Controller
     {
         private RRHHPROGIIIEntities1 db = new RRHHPROGIIIEntities1();
 
-        // GET: Nominas
+        // GET: Departamentoes
         public ActionResult Index()
         {
-                return View(db.Nomina.ToList());   
+            return View(db.Departamento.ToList());
         }
 
-        public ActionResult Buscar(int? Año, int? Mes)
-        {
-            var Consulta = from s in db.Nomina select s;
-
-            if (Año != null)
-            {
-                Consulta = Consulta.Where(j => j.Año == Año);
-               return View(Consulta);
-            }
-          
-            else if (Mes != null)
-           {
-              Consulta = Consulta.Where(M => M.Mes == Mes);
-          }
-            return View(Consulta);
-        }
-        
-    // GET: Nominas/Details/5
-    public ActionResult Details(int? id)
+        // GET: Departamentoes/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nomina nomina = db.Nomina.Find(id);
-            if (nomina == null)
+            Departamento departamento = db.Departamento.Find(id);
+            if (departamento == null)
             {
                 return HttpNotFound();
             }
-            return View(nomina);
+            return View(departamento);
         }
 
-        // GET: Nominas/Create
+        // GET: Departamentoes/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Nominas/Create
+        // POST: Departamentoes/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Año,Mes,Monto_Total")] Nomina nomina)
+        public ActionResult Create([Bind(Include = "Codigo_departamento,Nombre")] Departamento departamento)
         {
             if (ModelState.IsValid)
             {
-                db.Nomina.Add(nomina);
+                db.Departamento.Add(departamento);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(nomina);
+            return View(departamento);
         }
 
-        // GET: Nominas/Edit/5
+        // GET: Departamentoes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nomina nomina = db.Nomina.Find(id);
-            if (nomina == null)
+            Departamento departamento = db.Departamento.Find(id);
+            if (departamento == null)
             {
                 return HttpNotFound();
             }
-            return View(nomina);
+            return View(departamento);
         }
 
-        // POST: Nominas/Edit/5
+        // POST: Departamentoes/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Año,Mes,Monto_Total")] Nomina nomina)
+        public ActionResult Edit([Bind(Include = "Codigo_departamento,Nombre")] Departamento departamento)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(nomina).State = EntityState.Modified;
+                db.Entry(departamento).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(nomina);
+            return View(departamento);
         }
 
-        // GET: Nominas/Delete/5
+        // GET: Departamentoes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nomina nomina = db.Nomina.Find(id);
-            if (nomina == null)
+            Departamento departamento = db.Departamento.Find(id);
+            if (departamento == null)
             {
                 return HttpNotFound();
             }
-            return View(nomina);
+            return View(departamento);
         }
 
-        // POST: Nominas/Delete/5
+        // POST: Departamentoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Nomina nomina = db.Nomina.Find(id);
-            db.Nomina.Remove(nomina);
+            Departamento departamento = db.Departamento.Find(id);
+            db.Departamento.Remove(departamento);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -141,5 +124,4 @@ namespace Proyecto.Controllers.ControllersInformes
             base.Dispose(disposing);
         }
     }
-
 }

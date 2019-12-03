@@ -10,124 +10,107 @@ using Proyecto.Models;
 
 namespace Proyecto.Controllers.ControllersInformes
 {
-    public class NominasController : Controller
+    public class CargosController : Controller
     {
         private RRHHPROGIIIEntities1 db = new RRHHPROGIIIEntities1();
 
-        // GET: Nominas
+        // GET: Cargos
         public ActionResult Index()
         {
-                return View(db.Nomina.ToList());   
+            return View(db.Cargos.ToList());
         }
-
-        public ActionResult Buscar(int? Año, int? Mes)
-        {
-            var Consulta = from s in db.Nomina select s;
-
-            if (Año != null)
-            {
-                Consulta = Consulta.Where(j => j.Año == Año);
-               return View(Consulta);
-            }
-          
-            else if (Mes != null)
-           {
-              Consulta = Consulta.Where(M => M.Mes == Mes);
-          }
-            return View(Consulta);
-        }
-        
-    // GET: Nominas/Details/5
-    public ActionResult Details(int? id)
+      
+        // GET: Cargos/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nomina nomina = db.Nomina.Find(id);
-            if (nomina == null)
+            Cargos cargos = db.Cargos.Find(id);
+            if (cargos == null)
             {
                 return HttpNotFound();
             }
-            return View(nomina);
+            return View(cargos);
         }
 
-        // GET: Nominas/Create
+        // GET: Cargos/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Nominas/Create
+        // POST: Cargos/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Año,Mes,Monto_Total")] Nomina nomina)
+        public ActionResult Create([Bind(Include = "id,Cargo")] Cargos cargos)
         {
             if (ModelState.IsValid)
             {
-                db.Nomina.Add(nomina);
+                db.Cargos.Add(cargos);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(nomina);
+            return View(cargos);
         }
 
-        // GET: Nominas/Edit/5
+        // GET: Cargos/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nomina nomina = db.Nomina.Find(id);
-            if (nomina == null)
+            Cargos cargos = db.Cargos.Find(id);
+            if (cargos == null)
             {
                 return HttpNotFound();
             }
-            return View(nomina);
+            return View(cargos);
         }
 
-        // POST: Nominas/Edit/5
+        // POST: Cargos/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Año,Mes,Monto_Total")] Nomina nomina)
+        public ActionResult Edit([Bind(Include = "id,Cargo")] Cargos cargos)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(nomina).State = EntityState.Modified;
+                db.Entry(cargos).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(nomina);
+            return View(cargos);
         }
 
-        // GET: Nominas/Delete/5
+        // GET: Cargos/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nomina nomina = db.Nomina.Find(id);
-            if (nomina == null)
+            Cargos cargos = db.Cargos.Find(id);
+            if (cargos == null)
             {
                 return HttpNotFound();
             }
-            return View(nomina);
+            return View(cargos);
         }
 
-        // POST: Nominas/Delete/5
+        // POST: Cargos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Nomina nomina = db.Nomina.Find(id);
-            db.Nomina.Remove(nomina);
+            Cargos cargos = db.Cargos.Find(id);
+            db.Cargos.Remove(cargos);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -141,5 +124,4 @@ namespace Proyecto.Controllers.ControllersInformes
             base.Dispose(disposing);
         }
     }
-
 }

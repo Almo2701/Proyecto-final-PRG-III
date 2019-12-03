@@ -10,124 +10,121 @@ using Proyecto.Models;
 
 namespace Proyecto.Controllers.ControllersInformes
 {
-    public class NominasController : Controller
+    public class PermisosController : Controller
     {
         private RRHHPROGIIIEntities1 db = new RRHHPROGIIIEntities1();
 
-        // GET: Nominas
+        // GET: Permisos
         public ActionResult Index()
         {
-                return View(db.Nomina.ToList());   
+            var permisos = db.Permisos.Include(p => p.Empleados);
+            return View(permisos.ToList());
         }
-
-        public ActionResult Buscar(int? Año, int? Mes)
+        public ActionResult Buscar(int? Empleado)
         {
-            var Consulta = from s in db.Nomina select s;
+            var Consulta = from p in db.Permisos select p;
 
-            if (Año != null)
+            if(Empleado != null)
             {
-                Consulta = Consulta.Where(j => j.Año == Año);
-               return View(Consulta);
+                Consulta = Consulta.Where(j => j.Empleado == Empleado);
             }
-          
-            else if (Mes != null)
-           {
-              Consulta = Consulta.Where(M => M.Mes == Mes);
-          }
             return View(Consulta);
         }
-        
-    // GET: Nominas/Details/5
-    public ActionResult Details(int? id)
+        // GET: Permisos/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nomina nomina = db.Nomina.Find(id);
-            if (nomina == null)
+            Permisos permisos = db.Permisos.Find(id);
+            if (permisos == null)
             {
                 return HttpNotFound();
             }
-            return View(nomina);
+            return View(permisos);
         }
 
-        // GET: Nominas/Create
+        // GET: Permisos/Create
         public ActionResult Create()
         {
+            ViewBag.Empleado = new SelectList(db.Empleados, "Codigo_Empleado", "Nombre");
             return View();
         }
 
-        // POST: Nominas/Create
+        // POST: Permisos/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Año,Mes,Monto_Total")] Nomina nomina)
+        public ActionResult Create([Bind(Include = "id,Comentarios,Empleado,Fecha_Inicio,Fecha_Final")] Permisos permisos)
         {
             if (ModelState.IsValid)
             {
-                db.Nomina.Add(nomina);
+                db.Permisos.Add(permisos);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(nomina);
+            ViewBag.Empleado = new SelectList(db.Empleados, "Codigo_Empleado", "Nombre", permisos.Empleado);
+            return View(permisos);
         }
 
-        // GET: Nominas/Edit/5
+        // GET: Permisos/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nomina nomina = db.Nomina.Find(id);
-            if (nomina == null)
+            Permisos permisos = db.Permisos.Find(id);
+            if (permisos == null)
             {
                 return HttpNotFound();
             }
-            return View(nomina);
+            ViewBag.Empleado = new SelectList(db.Empleados, "Codigo_Empleado", "Nombre", permisos.Empleado);
+            return View(permisos);
         }
 
-        // POST: Nominas/Edit/5
+        // POST: Permisos/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Año,Mes,Monto_Total")] Nomina nomina)
+        public ActionResult Edit([Bind(Include = "id,Comentarios,Empleado,Fecha_Inicio,Fecha_Final")] Permisos permisos)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(nomina).State = EntityState.Modified;
+                db.Entry(permisos).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(nomina);
+            ViewBag.Empleado = new SelectList(db.Empleados, "Codigo_Empleado", "Nombre", permisos.Empleado);
+            return View(permisos);
         }
 
-        // GET: Nominas/Delete/5
+        // GET: Permisos/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nomina nomina = db.Nomina.Find(id);
-            if (nomina == null)
+            Permisos permisos = db.Permisos.Find(id);
+            if (permisos == null)
             {
                 return HttpNotFound();
             }
-            return View(nomina);
+            return View(permisos);
         }
 
-        // POST: Nominas/Delete/5
+        // POST: Permisos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Nomina nomina = db.Nomina.Find(id);
-            db.Nomina.Remove(nomina);
+            Permisos permisos = db.Permisos.Find(id);
+            db.Permisos.Remove(permisos);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -141,5 +138,4 @@ namespace Proyecto.Controllers.ControllersInformes
             base.Dispose(disposing);
         }
     }
-
 }

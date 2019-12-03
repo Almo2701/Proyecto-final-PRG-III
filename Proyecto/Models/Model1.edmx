@@ -228,7 +228,6 @@
           <NavigationProperty Name="Permisos" Relationship="Self.FK__Permisos__Emplea__276EDEB3" FromRole="Empleados" ToRole="Permisos" />
           <NavigationProperty Name="salida" Relationship="Self.FK__salida__Empleado__25869641" FromRole="Empleados" ToRole="salida" />
           <NavigationProperty Name="Vacaciones" Relationship="Self.FK__Vacacione__Emple__22AA2996" FromRole="Empleados" ToRole="Vacaciones" />
-          <Property Name="Salario" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Licencias">
           <Key>
@@ -416,7 +415,6 @@
           <EntitySetMapping Name="Empleados">
             <EntityTypeMapping TypeName="RRHHPROGIIIModel.Empleados">
               <MappingFragment StoreEntitySet="Empleados">
-                <ScalarProperty Name="Salario" ColumnName="Salario" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />

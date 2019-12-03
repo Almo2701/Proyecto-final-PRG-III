@@ -10,124 +10,127 @@ using Proyecto.Models;
 
 namespace Proyecto.Controllers.ControllersInformes
 {
-    public class NominasController : Controller
+    public class EmpleadosActivosController : Controller
     {
         private RRHHPROGIIIEntities1 db = new RRHHPROGIIIEntities1();
 
-        // GET: Nominas
+        // GET: EmpleadosActivos
         public ActionResult Index()
         {
-                return View(db.Nomina.ToList());   
+            var empleados = db.Empleados.Include(e => e.Cargos).Include(e => e.Departamento1);
+            return View(empleados.ToList());
         }
 
-        public ActionResult Buscar(int? Año, int? Mes)
+        public ActionResult Buscar(String Estatus)
         {
-            var Consulta = from s in db.Nomina select s;
+            var Consulta = from e in db.Empleados select e;
 
-            if (Año != null)
+            if (!String.IsNullOrEmpty(Estatus))
             {
-                Consulta = Consulta.Where(j => j.Año == Año);
-               return View(Consulta);
+                Consulta = Consulta.Where(A => A.Estatus.Contains(Estatus));
             }
-          
-            else if (Mes != null)
-           {
-              Consulta = Consulta.Where(M => M.Mes == Mes);
-          }
             return View(Consulta);
         }
-        
-    // GET: Nominas/Details/5
-    public ActionResult Details(int? id)
+
+        // GET: EmpleadosActivos/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nomina nomina = db.Nomina.Find(id);
-            if (nomina == null)
+            Empleados empleados = db.Empleados.Find(id);
+            if (empleados == null)
             {
                 return HttpNotFound();
             }
-            return View(nomina);
+            return View(empleados);
         }
 
-        // GET: Nominas/Create
+        // GET: EmpleadosActivos/Create
         public ActionResult Create()
         {
+            ViewBag.Cargo = new SelectList(db.Cargos, "id", "Cargo");
+            ViewBag.Departamento = new SelectList(db.Departamento, "Codigo_departamento", "Nombre");
             return View();
         }
 
-        // POST: Nominas/Create
+        // POST: EmpleadosActivos/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Año,Mes,Monto_Total")] Nomina nomina)
+        public ActionResult Create([Bind(Include = "Nombre,Apellido,Telefono,Fecha_ingreso,Cargo,Departamento,Estatus,Codigo_Empleado")] Empleados empleados)
         {
             if (ModelState.IsValid)
             {
-                db.Nomina.Add(nomina);
+                db.Empleados.Add(empleados);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(nomina);
+            ViewBag.Cargo = new SelectList(db.Cargos, "id", "Cargo", empleados.Cargo);
+            ViewBag.Departamento = new SelectList(db.Departamento, "Codigo_departamento", "Nombre", empleados.Departamento);
+            return View(empleados);
         }
 
-        // GET: Nominas/Edit/5
+        // GET: EmpleadosActivos/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nomina nomina = db.Nomina.Find(id);
-            if (nomina == null)
+            Empleados empleados = db.Empleados.Find(id);
+            if (empleados == null)
             {
                 return HttpNotFound();
             }
-            return View(nomina);
+            ViewBag.Cargo = new SelectList(db.Cargos, "id", "Cargo", empleados.Cargo);
+            ViewBag.Departamento = new SelectList(db.Departamento, "Codigo_departamento", "Nombre", empleados.Departamento);
+            return View(empleados);
         }
 
-        // POST: Nominas/Edit/5
+        // POST: EmpleadosActivos/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Año,Mes,Monto_Total")] Nomina nomina)
+        public ActionResult Edit([Bind(Include = "Nombre,Apellido,Telefono,Fecha_ingreso,Cargo,Departamento,Estatus,Codigo_Empleado")] Empleados empleados)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(nomina).State = EntityState.Modified;
+                db.Entry(empleados).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(nomina);
+            ViewBag.Cargo = new SelectList(db.Cargos, "id", "Cargo", empleados.Cargo);
+            ViewBag.Departamento = new SelectList(db.Departamento, "Codigo_departamento", "Nombre", empleados.Departamento);
+            return View(empleados);
         }
 
-        // GET: Nominas/Delete/5
+        // GET: EmpleadosActivos/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nomina nomina = db.Nomina.Find(id);
-            if (nomina == null)
+            Empleados empleados = db.Empleados.Find(id);
+            if (empleados == null)
             {
                 return HttpNotFound();
             }
-            return View(nomina);
+            return View(empleados);
         }
 
-        // POST: Nominas/Delete/5
+        // POST: EmpleadosActivos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Nomina nomina = db.Nomina.Find(id);
-            db.Nomina.Remove(nomina);
+            Empleados empleados = db.Empleados.Find(id);
+            db.Empleados.Remove(empleados);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -141,5 +144,4 @@ namespace Proyecto.Controllers.ControllersInformes
             base.Dispose(disposing);
         }
     }
-
 }

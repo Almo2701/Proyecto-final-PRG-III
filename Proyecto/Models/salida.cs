@@ -17,8 +17,9 @@ namespace Proyecto.Models
         public int id { get; set; }
         public Nullable<int> Empleado { get; set; }
         public Nullable<System.DateTime> Fecha_Salida { get; set; }
-        public string Motivo { get; set; }
+        public String Motivo { get; set; }
         public string Tipo_Salida { get; set; }
+
     
         public virtual Empleados Empleados { get; set; }
     }
