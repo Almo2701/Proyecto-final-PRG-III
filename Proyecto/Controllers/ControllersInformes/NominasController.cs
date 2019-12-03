@@ -8,109 +8,113 @@ using System.Web;
 using System.Web.Mvc;
 using Proyecto.Models;
 
-namespace Proyecto.Controllers.ControllersMantenimiento
+namespace Proyecto.Controllers.ControllersInformes
 {
-    public class DepartamentoesController : Controller
+    public class NominasController : Controller
     {
-        private RHumanosDBEntities db = new RHumanosDBEntities();
+        private RRHHPROGIIIEntities1 db = new RRHHPROGIIIEntities1();
 
-        // GET: Departamentoes
-        public ActionResult Index()
+        // GET: Nominas
+        public ActionResult Index(int Año, int Mes)
         {
-            return View(db.Departamento.ToList());
+            var consulta = from s in db.Nomina
+                           select s;
+           
+
+            return View(db.Nomina.ToList());
         }
 
-        // GET: Departamentoes/Details/5
+        // GET: Nominas/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Departamento departamento = db.Departamento.Find(id);
-            if (departamento == null)
+            Nomina nomina = db.Nomina.Find(id);
+            if (nomina == null)
             {
                 return HttpNotFound();
             }
-            return View(departamento);
+            return View(nomina);
         }
 
-        // GET: Departamentoes/Create
+        // GET: Nominas/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Departamentoes/Create
+        // POST: Nominas/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Codigo_departamento,Nombre")] Departamento departamento)
+        public ActionResult Create([Bind(Include = "id,Año,Mes,Monto_Total")] Nomina nomina)
         {
             if (ModelState.IsValid)
             {
-                db.Departamento.Add(departamento);
+                db.Nomina.Add(nomina);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(departamento);
+            return View(nomina);
         }
 
-        // GET: Departamentoes/Edit/5
+        // GET: Nominas/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Departamento departamento = db.Departamento.Find(id);
-            if (departamento == null)
+            Nomina nomina = db.Nomina.Find(id);
+            if (nomina == null)
             {
                 return HttpNotFound();
             }
-            return View(departamento);
+            return View(nomina);
         }
 
-        // POST: Departamentoes/Edit/5
+        // POST: Nominas/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Codigo_departamento,Nombre")] Departamento departamento)
+        public ActionResult Edit([Bind(Include = "id,Año,Mes,Monto_Total")] Nomina nomina)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(departamento).State = EntityState.Modified;
+                db.Entry(nomina).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(departamento);
+            return View(nomina);
         }
 
-        // GET: Departamentoes/Delete/5
+        // GET: Nominas/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Departamento departamento = db.Departamento.Find(id);
-            if (departamento == null)
+            Nomina nomina = db.Nomina.Find(id);
+            if (nomina == null)
             {
                 return HttpNotFound();
             }
-            return View(departamento);
+            return View(nomina);
         }
 
-        // POST: Departamentoes/Delete/5
+        // POST: Nominas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Departamento departamento = db.Departamento.Find(id);
-            db.Departamento.Remove(departamento);
+            Nomina nomina = db.Nomina.Find(id);
+            db.Nomina.Remove(nomina);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

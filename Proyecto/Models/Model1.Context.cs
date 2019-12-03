@@ -13,10 +13,10 @@ namespace Proyecto.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RHumanosDBEntities : DbContext
+    public partial class RRHHPROGIIIEntities1 : DbContext
     {
-        public RHumanosDBEntities()
-            : base("name=RHumanosDBEntities")
+        public RRHHPROGIIIEntities1()
+            : base("name=RRHHPROGIIIEntities1")
         {
         }
     
