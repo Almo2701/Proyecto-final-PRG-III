@@ -15,17 +15,30 @@ namespace Proyecto.Controllers.ControllersInformes
         private RRHHPROGIIIEntities1 db = new RRHHPROGIIIEntities1();
 
         // GET: Nominas
-        public ActionResult Index(int Año, int Mes)
+        public ActionResult Index()
         {
-            var consulta = from s in db.Nomina
-                           select s;
-           
-
-            return View(db.Nomina.ToList());
+                return View(db.Nomina.ToList());   
         }
 
-        // GET: Nominas/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Buscar(int? Año, int? Mes)
+        {
+            var Consulta = from s in db.Nomina select s;
+
+            if (Año != null)
+            {
+                Consulta = Consulta.Where(j => j.Año == Año);
+                return View(Consulta);
+            }
+          
+            else if (Mes != null)
+            {
+                Consulta = Consulta.Where(M => M.Mes == Mes);
+            }
+            return View(Consulta);
+        }
+        
+    // GET: Nominas/Details/5
+    public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -128,4 +141,5 @@ namespace Proyecto.Controllers.ControllersInformes
             base.Dispose(disposing);
         }
     }
+
 }

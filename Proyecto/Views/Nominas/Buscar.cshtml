@@ -1,13 +1,21 @@
 ﻿@model IEnumerable<Proyecto.Models.Nomina>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Buscar";
 }
 
-<h2>Visualizar Nominas</h2>
+<h2>Buscar</h2>
 
 <p>
-   
+
+    @using (Html.BeginForm())
+    {
+<p>
+    Busqueda por Año:@Html.TextBox("Año")<br />
+    Busqueda por Mes:@Html.TextBox("Mes")<br />
+    <input type="submit" value="Buscar" />
+</p>
+    }
 </p>
 <table class="table">
     <tr>
@@ -34,11 +42,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Monto_Total)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
+    
     </tr>
 }
 

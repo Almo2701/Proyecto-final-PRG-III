@@ -242,6 +242,7 @@
     <Content Include="Views\Nominas\Details.cshtml" />
     <Content Include="Views\Nominas\Edit.cshtml" />
     <Content Include="Views\Nominas\Index.cshtml" />
+    <Content Include="Views\Nominas\Buscar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
