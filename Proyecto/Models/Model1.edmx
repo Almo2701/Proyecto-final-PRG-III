@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RRHHPROGIIIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RRHHPROGIIIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cargos">
           <Key>
             <PropertyRef Name="id" />
@@ -31,6 +31,7 @@
           <Property Name="Departamento" Type="int" Nullable="false" />
           <Property Name="Estatus" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Codigo_Empleado" Type="int" Nullable="false" />
+          <Property Name="Salario" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Licencias">
           <Key>
@@ -189,8 +190,7 @@
             <End Role="Vacaciones" EntitySet="Vacaciones" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RRHHPROGIIIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -228,6 +228,7 @@
           <NavigationProperty Name="Permisos" Relationship="Self.FK__Permisos__Emplea__276EDEB3" FromRole="Empleados" ToRole="Permisos" />
           <NavigationProperty Name="salida" Relationship="Self.FK__salida__Empleado__25869641" FromRole="Empleados" ToRole="salida" />
           <NavigationProperty Name="Vacaciones" Relationship="Self.FK__Vacacione__Emple__22AA2996" FromRole="Empleados" ToRole="Vacaciones" />
+          <Property Name="Salario" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Licencias">
           <Key>
@@ -415,6 +416,7 @@
           <EntitySetMapping Name="Empleados">
             <EntityTypeMapping TypeName="RRHHPROGIIIModel.Empleados">
               <MappingFragment StoreEntitySet="Empleados">
+                <ScalarProperty Name="Salario" ColumnName="Salario" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
