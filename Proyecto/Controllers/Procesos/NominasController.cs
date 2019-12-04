@@ -21,7 +21,22 @@ namespace Proyecto.Controllers.Procesos
 
             return View(db.Nomina.ToList());
         }
+        public ActionResult Buscar(int? Año, int? Mes)
+        {
+            var Consulta = from s in db.Nomina select s;
 
+            if (Año != null)
+            {
+                Consulta = Consulta.Where(j => j.Año == Año);
+                return View(Consulta);
+            }
+
+            else if (Mes != null)
+            {
+                Consulta = Consulta.Where(M => M.Mes == Mes);
+            }
+            return View(Consulta);
+        }
         // GET: Nominas/Details/5
         public ActionResult Details(int? id)
         {

@@ -37,6 +37,16 @@ namespace Proyecto.Controllers.ControllersMantenimiento
             
             return View(empleados.ToList());
         }
+        public ActionResult Buscar(String Estatus)
+        {
+            var Consulta = from e in db.Empleados select e;
+
+            if (!String.IsNullOrEmpty(Estatus))
+            {
+                Consulta = Consulta.Where(A => A.Estatus.Contains(Estatus));
+            }
+            return View(Consulta);
+        }
 
         // GET: Empleados/Details/5
         public ActionResult Details(int? id)

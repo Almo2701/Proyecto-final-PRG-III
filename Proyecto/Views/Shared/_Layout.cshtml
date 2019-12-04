@@ -1,133 +1,103 @@
-﻿<!DOCTYPE html>
+﻿<!DOCTYPE HTML>
+<!--
+    
+-->
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Industrious by TEMPLATED</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href='https://fonts.googleapis.com/css?family=Goudy Bookletter 1911' rel='stylesheet'>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js%22%3E</script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js%22%3E</script>
-        <script src="https://kit.fontawesome.com/a076d05399.js%22%3E</script>
-    
-
-    <style>
-        .navbar1 {
-  overflow: hidden;
-  background-color: #fff;
-}
-
-.navbar1 a {
-  float: left;
-  font-size: 16px;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-.dropdown1 {
-  float: left;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    padding:6px;
-  overflow: hidden;
-}
-
-.dropdown1 .dropbtn {
-  font-size: 16px;
-  border: none;
-  outline: none;
-  color: black;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
-
-.navbar1 a:hover, .dropdown1:hover .dropbtn {
-  background-color: rgba(0,0,0,0.2);
-}
-
-.dropdown1-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown1-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-.dropdown1-content a:hover {
-  background-color: #ddd;
-}
-
-.dropdown1:hover .dropdown1-content {
-  display: block;
-}
-    </style>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="assets/css/main.css" />
 </head>
-<body  >
-    <nav style="box-shadow: 0 1px 4px rgba(0,0,0,0.25), 0 4px 10px rgba(0,0,0,0.22)" class="navbar1 ">
-        <div class="navbar1 ">
-         
+<body class="is-preload">
 
-            <div class="dropdown1">
-                <button class="dropbtn">
-                    Mantenimiento
-                </button>
-                <div class="dropdown1-content">
-                    <a href="/Empleados/Create">Empleados</a>
-                    <a href="/Departamentoes/Create">Departamento</a>
-                    <a href="/Cargos/Create">Cargos</a>
-                </div>
-            </div>
-            <div class="dropdown1">
-                <button class="dropbtn">
-                    Procesos
-                </button>
-                <div class="dropdown1-content">
-                    <a href="/Nominas/Create">Nomina</a>
-                    <a href="Permisos/Create">Permisos</a>
-                    <a href="Licencias/Create">Licencias</a>
-                    <a href="Vacaciones/Create">Vacaciones</a>
-                </div>
-            </div>
-            <div class="dropdown1">
-                <button class="dropbtn">
-                    Dropdown
-                </button>
-                <div class="dropdown1-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>
-            </div>
-        </div>
+    <!-- Header -->
+    <header id="header">
+        <a class="logo" href="index.html">Industrious</a>
+        <nav>
+            <a href="#menu">Menu</a>
+        </nav>
+    </header>
+
+    <!-- Nav -->
+    <nav id="menu">
+        <ul class="links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="elements.html">Elements</a></li>
+            <li><a href="generic.html">Generic</a></li>
+        </ul>
     </nav>
+
+    <!-- Banner -->
+    <section id="banner">
+        <div class="inner">
+            <h1>Industrious</h1>
+            <p>
+                A responsive business oriented template with a video background<br />
+                designed by <a href="https://templated.co/">TEMPLATED</a> and released under the Creative Commons License.
+            </p>
+        </div>
+        <video autoplay loop muted playsinline src="images/banner.mp4"></video>
+    </section>
+
+    <!-- Highlights -->
     <div class="container body-content " style="margin-top:20px">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>
+
+
+
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+   
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="inner">
+            <div class="content">
+                <section>
+                    <h3>Accumsan montes viverra</h3>
+                    <p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing. Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing sed feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
+                </section>
+                <section>
+                    <h4>Sem turpis amet semper</h4>
+                    <ul class="alt">
+                        <li><a href="#">Dolor pulvinar sed etiam.</a></li>
+                        <li><a href="#">Etiam vel lorem sed amet.</a></li>
+                        <li><a href="#">Felis enim feugiat viverra.</a></li>
+                        <li><a href="#">Dolor pulvinar magna etiam.</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <h4>Magna sed ipsum</h4>
+                    <ul class="plain">
+                        <li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
+                        <li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
+                        <li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
+                        <li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+                    </ul>
+                </section>
+            </div>
+            <div class="copyright">
+                &copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a href="https://coverr.co">Coverr</a>.
+            </div>
+        </div>
+
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
 </body>
 </html>
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)

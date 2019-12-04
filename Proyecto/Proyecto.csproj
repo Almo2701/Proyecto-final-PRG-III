@@ -182,6 +182,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\css\font-awesome.min.css" />
+    <Content Include="assets\css\main.css" />
+    <Content Include="assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\js\breakpoints.min.js" />
+    <Content Include="assets\js\browser.min.js" />
+    <Content Include="assets\js\jquery.min.js" />
+    <Content Include="assets\js\main.js" />
+    <Content Include="assets\js\util.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -190,6 +198,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\banner.jpg" />
+    <Content Include="images\banner.mp4" />
+    <Content Include="images\bg.jpg" />
+    <Content Include="images\cta01.jpg" />
+    <Content Include="images\pic01.jpg" />
+    <Content Include="images\pic02.jpg" />
+    <Content Include="images\pic03.jpg" />
     <Content Include="Models\ModelRHumanos.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelRHumanos.edmx</DependentUpon>
@@ -209,6 +224,43 @@
     <Content Include="Models\ModelRHumanos.edmx.diagram">
       <DependentUpon>ModelRHumanos.edmx</DependentUpon>
     </Content>
+    <Content Include="assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\fonts\FontAwesome.otf" />
+    <Content Include="assets\sass\base\_page.scss" />
+    <Content Include="assets\sass\base\_reset.scss" />
+    <Content Include="assets\sass\base\_typography.scss" />
+    <Content Include="assets\sass\components\_actions.scss" />
+    <Content Include="assets\sass\components\_box.scss" />
+    <Content Include="assets\sass\components\_button.scss" />
+    <Content Include="assets\sass\components\_form.scss" />
+    <Content Include="assets\sass\components\_grid.scss" />
+    <Content Include="assets\sass\components\_highlights.scss" />
+    <Content Include="assets\sass\components\_icon.scss" />
+    <Content Include="assets\sass\components\_icons.scss" />
+    <Content Include="assets\sass\components\_image.scss" />
+    <Content Include="assets\sass\components\_inner.scss" />
+    <Content Include="assets\sass\components\_list.scss" />
+    <Content Include="assets\sass\components\_table.scss" />
+    <Content Include="assets\sass\components\_testimonials.scss" />
+    <Content Include="assets\sass\components\_wrapper.scss" />
+    <Content Include="assets\sass\layout\_banner.scss" />
+    <Content Include="assets\sass\layout\_cta.scss" />
+    <Content Include="assets\sass\layout\_footer.scss" />
+    <Content Include="assets\sass\layout\_header.scss" />
+    <Content Include="assets\sass\layout\_heading.scss" />
+    <Content Include="assets\sass\layout\_main.scss" />
+    <Content Include="assets\sass\layout\_menu.scss" />
+    <Content Include="assets\sass\libs\_breakpoints.scss" />
+    <Content Include="assets\sass\libs\_flexgrid.scss" />
+    <Content Include="assets\sass\libs\_functions.scss" />
+    <Content Include="assets\sass\libs\_grid.scss" />
+    <Content Include="assets\sass\libs\_mixins.scss" />
+    <Content Include="assets\sass\libs\_vars.scss" />
+    <Content Include="assets\sass\libs\_vendor.scss" />
+    <Content Include="assets\sass\main.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -274,6 +326,9 @@
     <Content Include="Views\Licencias\Details.cshtml" />
     <Content Include="Views\Licencias\Edit.cshtml" />
     <Content Include="Views\Licencias\Index.cshtml" />
+    <Content Include="Views\Nominas\Buscar.cshtml" />
+    <Content Include="Views\Empleados\Buscar.cshtml" />
+    <Content Include="Views\Permisos\Buscar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

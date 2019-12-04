@@ -20,7 +20,16 @@ namespace Proyecto.Controllers.Procesos
             var permisos = db.Permisos.Include(p => p.Empleados);
             return View(permisos.ToList());
         }
+        public ActionResult Buscar(int? Empleado)
+        {
+            var Consulta = from p in db.Permisos select p;
 
+            if (Empleado != null)
+            {
+                Consulta = Consulta.Where(j => j.Empleado == Empleado);
+            }
+            return View(Consulta);
+        }
         // GET: Permisos/Details/5
         public ActionResult Details(int? id)
         {
