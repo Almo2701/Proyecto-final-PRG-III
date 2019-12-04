@@ -6,16 +6,15 @@
 
 <h2>Empleados</h2>
 
-<p>
     @using (Html.BeginForm())
     {
-    <p>
-        Busqueda:@Html.TextBox("Estatus")<br />
-        <input type="submit" value="Buscar" />
-    </p>
-}
-    </p>
-    <table class="table">
+        <p>
+        Busqueda:@Html.TextBox("Estatus")
+        <input type="submit" class="btn btn-primary" value="Buscar" />
+        </p>
+    }
+<center>
+    <table class="table table-striped">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
@@ -65,10 +64,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Departamento1.Nombre)
                 </td>
-                <td>
-                 
-                </td>
+                <td></td>
             </tr>
         }
 
     </table>
+</center>

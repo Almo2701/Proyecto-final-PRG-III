@@ -10,12 +10,12 @@
     @using (Html.BeginForm())
     {
         <p>
-            Busqueda por Motivo de Salida:@Html.TextBox("Motivo")<br />
-            <input type="submit" value="Buscar"/>
+            Busqueda por Motivo de Salida:@Html.TextBox("Motivo")
+            <input type="submit" class="btn btn-primary" value="Buscar"/>
         </p>
     }
 
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Fecha_Salida)

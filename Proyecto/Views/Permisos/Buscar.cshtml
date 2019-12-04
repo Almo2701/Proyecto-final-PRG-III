@@ -9,12 +9,12 @@
     @using (Html.BeginForm())
     {
         <p>
-            Busqueda por Codigo de Empleado:@Html.TextBox("Empleado")<br />
-            <input type="submit" value="Buscar" />
+            Busqueda por Codigo de Empleado:@Html.TextBox("Empleado")
+            <input type="submit" class="btn btn-primary" value="Buscar" />
         </p>
     }
 
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Comentarios)
