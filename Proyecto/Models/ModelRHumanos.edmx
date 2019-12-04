@@ -4,13 +4,16 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RHumanosDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RHumanosDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cargos">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Cargo" Type="varchar" MaxLength="200" />
+          <Property Name="Funciones" Type="varchar" MaxLength="30" />
+          <Property Name="Conocimientos" Type="varchar" MaxLength="30" />
+          <Property Name="Ubicacion" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="Departamento">
           <Key>
@@ -18,6 +21,8 @@
           </Key>
           <Property Name="Codigo_departamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Funciones" Type="varchar" MaxLength="30" />
+          <Property Name="Ubicacion" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="Empleados">
           <Key>
@@ -31,6 +36,7 @@
           <Property Name="Departamento" Type="int" Nullable="false" />
           <Property Name="Estatus" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Codigo_Empleado" Type="int" Nullable="false" />
+          <Property Name="Salario" Type="int" />
         </EntityType>
         <EntityType Name="Licencias">
           <Key>
@@ -189,8 +195,7 @@
             <End Role="Vacaciones" EntitySet="Vacaciones" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RHumanosDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -201,14 +206,19 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Cargo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Empleados" Relationship="Self.FK__Empleados__Cargo__5629CD9C" FromRole="Cargos" ToRole="Empleados" />
+          <Property Name="Funciones" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Conocimientos" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Ubicacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Departamento">
           <Key>
             <PropertyRef Name="Codigo_departamento" />
           </Key>
-          <Property Name="Codigo_departamento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo_departamento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Empleados" Relationship="Self.FK__Empleados__Depar__571DF1D5" FromRole="Departamento" ToRole="Empleados" />
+          <Property Name="Funciones" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Ubicacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Empleados">
           <Key>
@@ -228,6 +238,7 @@
           <NavigationProperty Name="Permisos" Relationship="Self.FK__Permisos__Emplea__5AEE82B9" FromRole="Empleados" ToRole="Permisos" />
           <NavigationProperty Name="salida" Relationship="Self.FK__salida__Empleado__59FA5E80" FromRole="Empleados" ToRole="salida" />
           <NavigationProperty Name="Vacaciones" Relationship="Self.FK__Vacacione__Emple__59063A47" FromRole="Empleados" ToRole="Vacaciones" />
+          <Property Name="Salario" Type="Int32" />
         </EntityType>
         <EntityType Name="Licencias">
           <Key>
@@ -399,6 +410,9 @@
           <EntitySetMapping Name="Cargos">
             <EntityTypeMapping TypeName="RHumanosDBModel.Cargos">
               <MappingFragment StoreEntitySet="Cargos">
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+                <ScalarProperty Name="Conocimientos" ColumnName="Conocimientos" />
+                <ScalarProperty Name="Funciones" ColumnName="Funciones" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Cargo" ColumnName="Cargo" />
               </MappingFragment>
@@ -407,6 +421,8 @@
           <EntitySetMapping Name="Departamento">
             <EntityTypeMapping TypeName="RHumanosDBModel.Departamento">
               <MappingFragment StoreEntitySet="Departamento">
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+                <ScalarProperty Name="Funciones" ColumnName="Funciones" />
                 <ScalarProperty Name="Codigo_departamento" ColumnName="Codigo_departamento" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
@@ -415,6 +431,7 @@
           <EntitySetMapping Name="Empleados">
             <EntityTypeMapping TypeName="RHumanosDBModel.Empleados">
               <MappingFragment StoreEntitySet="Empleados">
+                <ScalarProperty Name="Salario" ColumnName="Salario" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />

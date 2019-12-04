@@ -18,6 +18,30 @@ namespace Proyecto.Controllers.ControllersMantenimiento
         public ActionResult Index()
         {
             var empleados = db.Empleados.Include(e => e.Cargos).Include(e => e.Departamento1);
+
+
+        
+           
+            var consulta = from s in db.Empleados
+                           where s.Estatus == "activo"
+
+                           select s.Salario;
+
+
+            var total = consulta.Sum();
+
+
+
+
+            var consulta2 =( from y in db.salida
+                           where y.Empleado==1
+                           select y).FirstOrDefault();
+
+            consulta2.Tipo_Salida = "Despido";
+            db.SaveChanges();
+            
+        
+                ViewBag.a = "la nomina es:" + consulta2;
             return View(empleados.ToList());
         }
 
@@ -49,13 +73,29 @@ namespace Proyecto.Controllers.ControllersMantenimiento
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Nombre,Apellido,Telefono,Fecha_ingreso,Cargo,Departamento,Estatus,Codigo_Empleado")] Empleados empleados)
+        public ActionResult Create([Bind(Include = "Nombre,Apellido,Telefono,Fecha_ingreso,Cargo,Departamento,Estatus,Codigo_Empleado,Salario")] Empleados empleados)
         {
+
+            var consulta = from s in db.Empleados
+
+                           select s;
             if (ModelState.IsValid)
             {
+
+                int? EM = empleados.Codigo_Empleado;
+
+                consulta = consulta.Where(a => a.Codigo_Empleado == EM);
+                if (consulta.Count() > 0)
+                {
+
+                    ViewBag.error = "El usuario no esta activo";
+                }
+
+                else { 
                 db.Empleados.Add(empleados);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+                }
             }
 
             ViewBag.Cargo = new SelectList(db.Cargos, "id", "Cargo", empleados.Cargo);

@@ -31,6 +31,7 @@ namespace Proyecto.Models
         public int Departamento { get; set; }
         public string Estatus { get; set; }
         public int Codigo_Empleado { get; set; }
+        public Nullable<int> Salario { get; set; }
     
         public virtual Cargos Cargos { get; set; }
         public virtual Departamento Departamento1 { get; set; }

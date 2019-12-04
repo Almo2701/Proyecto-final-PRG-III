@@ -132,6 +132,8 @@
     <Compile Include="Controllers\ControllersMantenimiento\DepartamentoesController.cs" />
     <Compile Include="Controllers\ControllersMantenimiento\EmpleadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Procesos\NominasController.cs" />
+    <Compile Include="Controllers\Procesos\salidasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -244,6 +246,16 @@
     <Content Include="Views\Cargos\Details.cshtml" />
     <Content Include="Views\Cargos\Edit.cshtml" />
     <Content Include="Views\Cargos\Index.cshtml" />
+    <Content Include="Views\Nominas\Create.cshtml" />
+    <Content Include="Views\Nominas\Delete.cshtml" />
+    <Content Include="Views\Nominas\Details.cshtml" />
+    <Content Include="Views\Nominas\Edit.cshtml" />
+    <Content Include="Views\Nominas\Index.cshtml" />
+    <Content Include="Views\salidas\Create.cshtml" />
+    <Content Include="Views\salidas\Delete.cshtml" />
+    <Content Include="Views\salidas\Details.cshtml" />
+    <Content Include="Views\salidas\Edit.cshtml" />
+    <Content Include="Views\salidas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

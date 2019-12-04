@@ -22,6 +22,9 @@ namespace Proyecto.Models
     
         public int id { get; set; }
         public string Cargo { get; set; }
+        public string Funciones { get; set; }
+        public string Conocimientos { get; set; }
+        public string Ubicacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Empleados> Empleados { get; set; }

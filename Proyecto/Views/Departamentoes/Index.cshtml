@@ -13,21 +13,40 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
+
+           
+           
         </th>
-        <th></th>
+        <th>  @Html.DisplayNameFor(model => model.Ubicacion)</th>
+      
+        <th>   @Html.DisplayNameFor(model => model.Funciones)</th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Codigo_departamento }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Codigo_departamento }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Codigo_departamento })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nombre)
+      
+    </td>
+    <td>
+
+        @Html.DisplayFor(modelItem => item.Ubicacion)
+
+    </td>
+
+   
+
+    <td>
+
+        @Html.DisplayFor(modelItem => item.Funciones)
+
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Codigo_departamento }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Codigo_departamento }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Codigo_departamento })
+    </td>
+</tr>
 }
 
 </table>

@@ -8,122 +8,138 @@ using System.Web;
 using System.Web.Mvc;
 using Proyecto.Models;
 
-namespace Proyecto.Controllers.ControllersMantenimiento
+namespace Proyecto.Controllers.Procesos
 {
-    public class CargosController : Controller
+    public class salidasController : Controller
     {
         private RHumanosDBEntities db = new RHumanosDBEntities();
 
-        // GET: Cargos
+        // GET: salidas
         public ActionResult Index()
         {
-            return View(db.Cargos.ToList());
+            var salida = db.salida.Include(s => s.Empleados);
+            return View(salida.ToList());
         }
 
-        // GET: Cargos/Details/5
+        // GET: salidas/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cargos cargos = db.Cargos.Find(id);
-            if (cargos == null)
+            salida salida = db.salida.Find(id);
+            if (salida == null)
             {
                 return HttpNotFound();
             }
-            return View(cargos);
+            return View(salida);
         }
 
-        // GET: Cargos/Create
+        // GET: salidas/Create
         public ActionResult Create()
         {
+            ViewBag.Empleado = new SelectList(db.Empleados, "Codigo_Empleado", "Codigo_Empleado");
             return View();
         }
 
-        // POST: Cargos/Create
+        // POST: salidas/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Cargo")] Cargos cargos)
+        public ActionResult Create([Bind(Include = "id,Empleado,Fecha_Salida,Motivo,Tipo_Salida")] salida salida)
         {
-            var consulta = from s in db.Cargos
+            var consulta = from s in db.salida
 
                            select s;
+
+
             if (ModelState.IsValid)
             {
-                string EM = cargos.Cargo;
 
-                consulta = consulta.Where(a => a.Cargo == EM);
+               int? EM = salida.Empleado;
+
+                consulta = consulta.Where(a => a.Empleado == EM );
                 if (consulta.Count() > 0)
                 {
 
-                    ViewBag.error = "El Cargo ya existe";
+                    ViewBag.error = "El usuario no esta activo";
                 }
-
                 else
-                    db.Cargos.Add(cargos);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                {
+
+                    var consulta2 = (from y in db.Empleados
+                                     where y.Codigo_Empleado == EM
+                                     select y).FirstOrDefault();
+
+                    consulta2.Estatus = "nactivo";
+                    db.salida.Add(salida);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+               
             }
 
-            return View(cargos);
+            ViewBag.Empleado = new SelectList(db.Empleados, "Codigo_Empleado", "Codigo_Empleado", salida.Empleado);
+            return View(salida);
         }
 
-        // GET: Cargos/Edit/5
+        // GET: salidas/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cargos cargos = db.Cargos.Find(id);
-            if (cargos == null)
+            salida salida = db.salida.Find(id);
+            if (salida == null)
             {
                 return HttpNotFound();
             }
-            return View(cargos);
+            ViewBag.Empleado = new SelectList(db.Empleados, "Codigo_Empleado", "Codigo_Empleado", salida.Empleado);
+            return View(salida);
         }
 
-        // POST: Cargos/Edit/5
+        // POST: salidas/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Cargo")] Cargos cargos)
+        public ActionResult Edit([Bind(Include = "id,Empleado,Fecha_Salida,Motivo,Tipo_Salida")] salida salida)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cargos).State = EntityState.Modified;
+                db.Entry(salida).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(cargos);
+            ViewBag.Empleado = new SelectList(db.Empleados, "Codigo_Empleado", "Codigo_Empleado", salida.Empleado);
+            return View(salida);
         }
 
-        // GET: Cargos/Delete/5
+        // GET: salidas/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cargos cargos = db.Cargos.Find(id);
-            if (cargos == null)
+            salida salida = db.salida.Find(id);
+            if (salida == null)
             {
                 return HttpNotFound();
             }
-            return View(cargos);
+            return View(salida);
         }
 
-        // POST: Cargos/Delete/5
+        // POST: salidas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Cargos cargos = db.Cargos.Find(id);
-            db.Cargos.Remove(cargos);
+            salida salida = db.salida.Find(id);
+            db.salida.Remove(salida);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

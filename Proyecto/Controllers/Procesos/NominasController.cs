@@ -8,122 +8,116 @@ using System.Web;
 using System.Web.Mvc;
 using Proyecto.Models;
 
-namespace Proyecto.Controllers.ControllersMantenimiento
+namespace Proyecto.Controllers.Procesos
 {
-    public class CargosController : Controller
+    public class NominasController : Controller
     {
         private RHumanosDBEntities db = new RHumanosDBEntities();
 
-        // GET: Cargos
+        // GET: Nominas
         public ActionResult Index()
         {
-            return View(db.Cargos.ToList());
+
+
+            return View(db.Nomina.ToList());
         }
 
-        // GET: Cargos/Details/5
+        // GET: Nominas/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cargos cargos = db.Cargos.Find(id);
-            if (cargos == null)
+            Nomina nomina = db.Nomina.Find(id);
+            if (nomina == null)
             {
                 return HttpNotFound();
             }
-            return View(cargos);
+            return View(nomina);
         }
 
-        // GET: Cargos/Create
+        // GET: Nominas/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Cargos/Create
+        // POST: Nominas/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Cargo")] Cargos cargos)
+        public ActionResult Create([Bind(Include = "id,Año,Mes,Monto_Total")] Nomina nomina)
         {
-            var consulta = from s in db.Cargos
 
-                           select s;
+
+
+
+
             if (ModelState.IsValid)
             {
-                string EM = cargos.Cargo;
-
-                consulta = consulta.Where(a => a.Cargo == EM);
-                if (consulta.Count() > 0)
-                {
-
-                    ViewBag.error = "El Cargo ya existe";
-                }
-
-                else
-                    db.Cargos.Add(cargos);
+                db.Nomina.Add(nomina);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(cargos);
+            return View(nomina);
         }
 
-        // GET: Cargos/Edit/5
+        // GET: Nominas/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cargos cargos = db.Cargos.Find(id);
-            if (cargos == null)
+            Nomina nomina = db.Nomina.Find(id);
+            if (nomina == null)
             {
                 return HttpNotFound();
             }
-            return View(cargos);
+            return View(nomina);
         }
 
-        // POST: Cargos/Edit/5
+        // POST: Nominas/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Cargo")] Cargos cargos)
+        public ActionResult Edit([Bind(Include = "id,Año,Mes,Monto_Total")] Nomina nomina)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cargos).State = EntityState.Modified;
+                db.Entry(nomina).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(cargos);
+            return View(nomina);
         }
 
-        // GET: Cargos/Delete/5
+        // GET: Nominas/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cargos cargos = db.Cargos.Find(id);
-            if (cargos == null)
+            Nomina nomina = db.Nomina.Find(id);
+            if (nomina == null)
             {
                 return HttpNotFound();
             }
-            return View(cargos);
+            return View(nomina);
         }
 
-        // POST: Cargos/Delete/5
+        // POST: Nominas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Cargos cargos = db.Cargos.Find(id);
-            db.Cargos.Remove(cargos);
+            Nomina nomina = db.Nomina.Find(id);
+            db.Nomina.Remove(nomina);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

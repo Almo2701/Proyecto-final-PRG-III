@@ -46,11 +46,24 @@ namespace Proyecto.Controllers.ControllersMantenimiento
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Codigo_departamento,Nombre")] Departamento departamento)
+        public ActionResult Create([Bind(Include = "Codigo_departamento,Nombre,Funciones,Ubicacion")] Departamento departamento)
         {
+            var consulta = from s in db.Departamento
+
+                           select s;
             if (ModelState.IsValid)
             {
-                db.Departamento.Add(departamento);
+               string EM = departamento.Nombre;
+
+                consulta = consulta.Where(a => a.Nombre == EM);
+                if (consulta.Count() > 0)
+                {
+
+                    ViewBag.error = "El Departamento ya existe";
+                }
+
+                else
+                    db.Departamento.Add(departamento);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
