@@ -69,11 +69,18 @@ namespace Proyecto.Controllers.Procesos
                 else
                 {
 
-                    var consulta2 = (from y in db.Empleados
-                                     where y.Codigo_Empleado == EM
-                                     select y).FirstOrDefault();
+                 
 
-                    consulta2.Estatus = "nactivo";
+
+                    var query = (from a in db.Empleados
+                                 where a.Codigo_Empleado==EM
+                                 select a).ToList();
+
+                    foreach (var item in query)
+                    {
+                        item.Estatus = "Inactivo";
+
+                    }
                     db.salida.Add(salida);
                     db.SaveChanges();
                     return RedirectToAction("Index");

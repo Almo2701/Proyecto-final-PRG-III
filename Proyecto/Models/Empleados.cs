@@ -11,6 +11,7 @@ namespace Proyecto.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Empleados
     {
@@ -22,13 +23,18 @@ namespace Proyecto.Models
             this.salida = new HashSet<salida>();
             this.Vacaciones = new HashSet<Vacaciones>();
         }
-    
+    [Required]
         public string Nombre { get; set; }
+        [Required]
         public string Apellido { get; set; }
+        [Required]
         public string Telefono { get; set; }
+        [Required]
         public System.DateTime Fecha_ingreso { get; set; }
         public int Cargo { get; set; }
+        [Required]
         public int Departamento { get; set; }
+        [Required]
         public string Estatus { get; set; }
         public int Codigo_Empleado { get; set; }
         public Nullable<int> Salario { get; set; }

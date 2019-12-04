@@ -33,15 +33,8 @@ namespace Proyecto.Controllers.ControllersMantenimiento
 
 
 
-            var consulta2 =( from y in db.salida
-                           where y.Empleado==1
-                           select y).FirstOrDefault();
-
-            consulta2.Tipo_Salida = "Despido";
             db.SaveChanges();
             
-        
-                ViewBag.a = "la nomina es:" + consulta2;
             return View(empleados.ToList());
         }
 

@@ -10,131 +10,112 @@ using Proyecto.Models;
 
 namespace Proyecto.Controllers.Procesos
 {
-    public class NominasController : Controller
+    public class VacacionesController : Controller
     {
         private RHumanosDBEntities db = new RHumanosDBEntities();
 
-        // GET: Nominas
+        // GET: Vacaciones
         public ActionResult Index()
         {
-
-
-            return View(db.Nomina.ToList());
+            var vacaciones = db.Vacaciones.Include(v => v.Empleados);
+            return View(vacaciones.ToList());
         }
 
-        // GET: Nominas/Details/5
+        // GET: Vacaciones/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nomina nomina = db.Nomina.Find(id);
-            if (nomina == null)
+            Vacaciones vacaciones = db.Vacaciones.Find(id);
+            if (vacaciones == null)
             {
                 return HttpNotFound();
             }
-            return View(nomina);
+            return View(vacaciones);
         }
 
-        // GET: Nominas/Create
+        // GET: Vacaciones/Create
         public ActionResult Create()
-
         {
-
-           
-            Nomina c = new Nomina();
-          
-            var consulta = from s in db.Empleados
-                           where s.Estatus == "activo"
-
-                           select s.Salario;
-
-
-           int total = consulta.Sum().Value;
-          
-
-            c.Mes = DateTime.Now.Month;
-            c.Monto_Total = total;
-            c.Año = DateTime.Now.Year;
-            return View(c);
+            ViewBag.Empleado = new SelectList(db.Empleados, "Codigo_Empleado", "Nombre");
+            return View();
         }
 
-        // POST: Nominas/Create
+        // POST: Vacaciones/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Año,Mes,Monto_Total")] Nomina nomina)
+        public ActionResult Create([Bind(Include = "Año,Comentarios,Empleado,Fecha_Inicio,Fecha_Final,id")] Vacaciones vacaciones)
         {
-          
-          
-           
-
-            
             if (ModelState.IsValid)
             {
-                db.Nomina.Add(nomina);
+                db.Vacaciones.Add(vacaciones);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(nomina);
+            ViewBag.Empleado = new SelectList(db.Empleados, "Codigo_Empleado", "Nombre", vacaciones.Empleado);
+            return View(vacaciones);
         }
 
-        // GET: Nominas/Edit/5
+        // GET: Vacaciones/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nomina nomina = db.Nomina.Find(id);
-            if (nomina == null)
+            Vacaciones vacaciones = db.Vacaciones.Find(id);
+            if (vacaciones == null)
             {
                 return HttpNotFound();
             }
-            return View(nomina);
+            ViewBag.Empleado = new SelectList(db.Empleados, "Codigo_Empleado", "Nombre", vacaciones.Empleado);
+            return View(vacaciones);
         }
 
-        // POST: Nominas/Edit/5
+        // POST: Vacaciones/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Año,Mes,Monto_Total")] Nomina nomina)
+        public ActionResult Edit([Bind(Include = "Año,Comentarios,Empleado,Fecha_Inicio,Fecha_Final,id")] Vacaciones vacaciones)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(nomina).State = EntityState.Modified;
+                db.Entry(vacaciones).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(nomina);
+            ViewBag.Empleado = new SelectList(db.Empleados, "Codigo_Empleado", "Nombre", vacaciones.Empleado);
+            return View(vacaciones);
         }
 
-        // GET: Nominas/Delete/5
+        // GET: Vacaciones/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nomina nomina = db.Nomina.Find(id);
-            if (nomina == null)
+            Vacaciones vacaciones = db.Vacaciones.Find(id);
+            if (vacaciones == null)
             {
                 return HttpNotFound();
             }
-            return View(nomina);
+            return View(vacaciones);
         }
 
-        // POST: Nominas/Delete/5
+        // POST: Vacaciones/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Nomina nomina = db.Nomina.Find(id);
-            db.Nomina.Remove(nomina);
+            Vacaciones vacaciones = db.Vacaciones.Find(id);
+            db.Vacaciones.Remove(vacaciones);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
