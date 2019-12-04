@@ -8,122 +8,124 @@ using System.Web;
 using System.Web.Mvc;
 using Proyecto.Models;
 
-namespace Proyecto.Controllers.ControllersMantenimiento
+namespace Proyecto.Controllers.ControllersInformes
 {
-    public class DepartamentoesController : Controller
+    public class salidasController : Controller
     {
-        private RHumanosDBEntities db = new RHumanosDBEntities();
+        private RRHHPROGIIIEntities1 db = new RRHHPROGIIIEntities1();
 
-        // GET: Departamentoes
+        // GET: salidas
         public ActionResult Index()
         {
-            return View(db.Departamento.ToList());
+            var salida = db.salida.Include(s => s.Empleados);
+            return View(salida.ToList());
         }
+        public ActionResult Buscar(String Motivo)
+        {
+            var Consulta = from f in db.salida select f;
 
-        // GET: Departamentoes/Details/5
+            if(!String.IsNullOrEmpty(Motivo))
+            {
+                Consulta = Consulta.Where(F => F.Motivo.Contains(Motivo));
+            }
+
+            return View(Consulta);
+        }
+        // GET: salidas/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Departamento departamento = db.Departamento.Find(id);
-            if (departamento == null)
+            salida salida = db.salida.Find(id);
+            if (salida == null)
             {
                 return HttpNotFound();
             }
-            return View(departamento);
+            return View(salida);
         }
 
-        // GET: Departamentoes/Create
+        // GET: salidas/Create
         public ActionResult Create()
         {
+            ViewBag.Empleado = new SelectList(db.Empleados, "Codigo_Empleado", "Nombre");
             return View();
         }
 
-        // POST: Departamentoes/Create
+        // POST: salidas/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Codigo_departamento,Nombre,Funciones,Ubicacion")] Departamento departamento)
+        public ActionResult Create([Bind(Include = "id,Empleado,Fecha_Salida,Motivo,Tipo_Salida")] salida salida)
         {
-            var consulta = from s in db.Departamento
-
-                           select s;
             if (ModelState.IsValid)
             {
-               string EM = departamento.Nombre;
-
-                consulta = consulta.Where(a => a.Nombre == EM);
-                if (consulta.Count() > 0)
-                {
-
-                    ViewBag.error = "El Departamento ya existe";
-                }
-
-                else
-                    db.Departamento.Add(departamento);
+                db.salida.Add(salida);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(departamento);
+            ViewBag.Empleado = new SelectList(db.Empleados, "Codigo_Empleado", "Nombre", salida.Empleado);
+            return View(salida);
         }
 
-        // GET: Departamentoes/Edit/5
+        // GET: salidas/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Departamento departamento = db.Departamento.Find(id);
-            if (departamento == null)
+            salida salida = db.salida.Find(id);
+            if (salida == null)
             {
                 return HttpNotFound();
             }
-            return View(departamento);
+            ViewBag.Empleado = new SelectList(db.Empleados, "Codigo_Empleado", "Nombre", salida.Empleado);
+            return View(salida);
         }
 
-        // POST: Departamentoes/Edit/5
+        // POST: salidas/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Codigo_departamento,Nombre")] Departamento departamento)
+        public ActionResult Edit([Bind(Include = "id,Empleado,Fecha_Salida,Motivo,Tipo_Salida")] salida salida)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(departamento).State = EntityState.Modified;
+                db.Entry(salida).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(departamento);
+            ViewBag.Empleado = new SelectList(db.Empleados, "Codigo_Empleado", "Nombre", salida.Empleado);
+            return View(salida);
         }
 
-        // GET: Departamentoes/Delete/5
+        // GET: salidas/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Departamento departamento = db.Departamento.Find(id);
-            if (departamento == null)
+            salida salida = db.salida.Find(id);
+            if (salida == null)
             {
                 return HttpNotFound();
             }
-            return View(departamento);
+            return View(salida);
         }
 
-        // POST: Departamentoes/Delete/5
+        // POST: salidas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Departamento departamento = db.Departamento.Find(id);
-            db.Departamento.Remove(departamento);
+            salida salida = db.salida.Find(id);
+            db.salida.Remove(salida);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

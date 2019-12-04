@@ -8,122 +8,122 @@ using System.Web;
 using System.Web.Mvc;
 using Proyecto.Models;
 
-namespace Proyecto.Controllers.ControllersMantenimiento
+namespace Proyecto.Controllers.ControllersInformes
 {
-    public class CargosController : Controller
+    public class DepartamentoesController : Controller
     {
-        private RHumanosDBEntities db = new RHumanosDBEntities();
+        private RRHHPROGIIIEntities1 db = new RRHHPROGIIIEntities1();
 
-        // GET: Cargos
+        // GET: Departamentoes
         public ActionResult Index()
         {
-            return View(db.Cargos.ToList());
+            return View(db.Departamento.ToList());
         }
 
-        // GET: Cargos/Details/5
+        // GET: Departamentoes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cargos cargos = db.Cargos.Find(id);
-            if (cargos == null)
+            Departamento departamento = db.Departamento.Find(id);
+            if (departamento == null)
             {
                 return HttpNotFound();
             }
-            return View(cargos);
+            return View(departamento);
         }
 
-        // GET: Cargos/Create
+        // GET: Departamentoes/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Cargos/Create
+        // POST: Departamentoes/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Cargo")] Cargos cargos)
+        public ActionResult Create([Bind(Include = "Codigo_departamento,Nombre,Funciones,Ubicacion")] Departamento departamento)
         {
-            var consulta = from s in db.Cargos
+            var consulta = from s in db.Departamento
 
                            select s;
             if (ModelState.IsValid)
             {
-                string EM = cargos.Cargo;
+               string EM = departamento.Nombre;
 
-                consulta = consulta.Where(a => a.Cargo == EM);
+                consulta = consulta.Where(a => a.Nombre == EM);
                 if (consulta.Count() > 0)
                 {
 
-                    ViewBag.error = "El Cargo ya existe";
+                    ViewBag.error = "El Departamento ya existe";
                 }
 
                 else
-                    db.Cargos.Add(cargos);
+                    db.Departamento.Add(departamento);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(cargos);
+            return View(departamento);
         }
 
-        // GET: Cargos/Edit/5
+        // GET: Departamentoes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cargos cargos = db.Cargos.Find(id);
-            if (cargos == null)
+            Departamento departamento = db.Departamento.Find(id);
+            if (departamento == null)
             {
                 return HttpNotFound();
             }
-            return View(cargos);
+            return View(departamento);
         }
 
-        // POST: Cargos/Edit/5
+        // POST: Departamentoes/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Cargo")] Cargos cargos)
+        public ActionResult Edit([Bind(Include = "Codigo_departamento,Nombre")] Departamento departamento)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cargos).State = EntityState.Modified;
+                db.Entry(departamento).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(cargos);
+            return View(departamento);
         }
 
-        // GET: Cargos/Delete/5
+        // GET: Departamentoes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cargos cargos = db.Cargos.Find(id);
-            if (cargos == null)
+            Departamento departamento = db.Departamento.Find(id);
+            if (departamento == null)
             {
                 return HttpNotFound();
             }
-            return View(cargos);
+            return View(departamento);
         }
 
-        // POST: Cargos/Delete/5
+        // POST: Departamentoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Cargos cargos = db.Cargos.Find(id);
-            db.Cargos.Remove(cargos);
+            Departamento departamento = db.Departamento.Find(id);
+            db.Departamento.Remove(departamento);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

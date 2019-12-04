@@ -1,5 +1,4 @@
-﻿
-@model IEnumerable<Proyecto.Models.Nomina>
+﻿@model IEnumerable<Proyecto.Models.Nomina>
 
 @{
     ViewBag.Title = "Buscar";
@@ -8,13 +7,13 @@
 <h2>Visualizar Nomina</h2>
 <br />
 
-@using (Html.BeginForm())
-{
-    <p>
-        Busqueda por Año:@Html.TextBox("Año")Busqueda por Mes:@Html.TextBox("Mes")<br />
-        <input type="submit" class="btn btn-primary" value="Buscar" />
-    </p>
-}
+    @using (Html.BeginForm())
+    {
+<p>
+    Busqueda por Año:@Html.TextBox("Año")Busqueda por Mes:@Html.TextBox("Mes")<br />
+    <input type="submit" class="btn btn-primary" value="Buscar" />
+</p>
+    }
 <br />
 <table class="table table-striped">
     <tr>
@@ -30,20 +29,19 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Año)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Monto_Total)
-            </td>
-
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Año)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Monto_Total)
+        </td>
+    
+    </tr>
+}
 
 </table>

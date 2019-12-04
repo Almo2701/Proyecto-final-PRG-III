@@ -8,13 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using Proyecto.Models;
 
-namespace Proyecto.Controllers.ControllersMantenimiento
+namespace Proyecto.Controllers.ControllersInformes
 {
-    public class EmpleadosController : Controller
+    public class EmpleadosActivosController : Controller
     {
-        private RHumanosDBEntities db = new RHumanosDBEntities();
+        private RRHHPROGIIIEntities1 db = new RRHHPROGIIIEntities1();
 
-        // GET: Empleados
+        // GET: EmpleadosActivos
         public ActionResult Index()
         {
             var empleados = db.Empleados.Include(e => e.Cargos).Include(e => e.Departamento1);
@@ -48,7 +48,18 @@ namespace Proyecto.Controllers.ControllersMantenimiento
             return View(Consulta);
         }
 
-        // GET: Empleados/Details/5
+        public ActionResult Buscar(String Estatus)
+        {
+            var Consulta = from e in db.Empleados select e;
+
+            if (!String.IsNullOrEmpty(Estatus))
+            {
+                Consulta = Consulta.Where(A => A.Estatus.Contains(Estatus));
+            }
+            return View(Consulta);
+        }
+
+        // GET: EmpleadosActivos/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -63,7 +74,7 @@ namespace Proyecto.Controllers.ControllersMantenimiento
             return View(empleados);
         }
 
-        // GET: Empleados/Create
+        // GET: EmpleadosActivos/Create
         public ActionResult Create()
         {
             ViewBag.Cargo = new SelectList(db.Cargos, "id", "Cargo");
@@ -71,7 +82,7 @@ namespace Proyecto.Controllers.ControllersMantenimiento
             return View();
         }
 
-        // POST: Empleados/Create
+        // POST: EmpleadosActivos/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -106,7 +117,7 @@ namespace Proyecto.Controllers.ControllersMantenimiento
             return View(empleados);
         }
 
-        // GET: Empleados/Edit/5
+        // GET: EmpleadosActivos/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -123,7 +134,7 @@ namespace Proyecto.Controllers.ControllersMantenimiento
             return View(empleados);
         }
 
-        // POST: Empleados/Edit/5
+        // POST: EmpleadosActivos/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -141,7 +152,7 @@ namespace Proyecto.Controllers.ControllersMantenimiento
             return View(empleados);
         }
 
-        // GET: Empleados/Delete/5
+        // GET: EmpleadosActivos/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -156,7 +167,7 @@ namespace Proyecto.Controllers.ControllersMantenimiento
             return View(empleados);
         }
 
-        // POST: Empleados/Delete/5
+        // POST: EmpleadosActivos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Proyecto.Models.salida>
+
+@{
+    ViewBag.Title = "Buscar";
+}
+
+<h2>Salidas de Empleados</h2>
+
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            Busqueda por Motivo de Salida:@Html.TextBox("Motivo")
+            <input type="submit" class="btn btn-primary" value="Buscar"/>
+        </p>
+    }
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha_Salida)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Motivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipo_Salida)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Empleados.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha_Salida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Motivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tipo_Salida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Empleados.Nombre)
+        </td>
+    </tr>
+}
+
+</table>

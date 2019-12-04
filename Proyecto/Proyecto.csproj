@@ -55,6 +55,10 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -63,6 +67,14 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -128,68 +140,58 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ControllersMantenimiento\CargosController.cs" />
-    <Compile Include="Controllers\ControllersMantenimiento\DepartamentoesController.cs" />
-    <Compile Include="Controllers\ControllersMantenimiento\EmpleadosController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Procesos\LicenciasController.cs" />
-    <Compile Include="Controllers\Procesos\NominasController.cs" />
-    <Compile Include="Controllers\Procesos\PermisosController.cs" />
-    <Compile Include="Controllers\Procesos\salidasController.cs" />
-    <Compile Include="Controllers\Procesos\VacacionesController.cs" />
+    <Compile Include="Controllers\ControllersInformes\CargosController.cs" />
+    <Compile Include="Controllers\ControllersInformes\DepartamentoesController.cs" />
+    <Compile Include="Controllers\ControllersInformes\EmpleadosActivosController.cs" />
+    <Compile Include="Controllers\ControllersInformes\InformesController.cs" />
+    <Compile Include="Controllers\ControllersInformes\NominasController.cs" />
+    <Compile Include="Controllers\ControllersInformes\PermisosController.cs" />
+    <Compile Include="Controllers\ControllersInformes\salidasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cargos.cs">
-      <DependentUpon>ModelRHumanos.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Departamento.cs">
-      <DependentUpon>ModelRHumanos.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Empleados.cs">
-      <DependentUpon>ModelRHumanos.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Licencias.cs">
-      <DependentUpon>ModelRHumanos.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelRHumanos.Context.cs">
+    <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelRHumanos.Context.tt</DependentUpon>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelRHumanos.cs">
+    <Compile Include="Models\Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelRHumanos.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelRHumanos.Designer.cs">
+    <Compile Include="Models\Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelRHumanos.edmx</DependentUpon>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Nomina.cs">
-      <DependentUpon>ModelRHumanos.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Permisos.cs">
-      <DependentUpon>ModelRHumanos.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\salida.cs">
-      <DependentUpon>ModelRHumanos.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Vacaciones.cs">
-      <DependentUpon>ModelRHumanos.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\css\font-awesome.min.css" />
-    <Content Include="assets\css\main.css" />
-    <Content Include="assets\fonts\fontawesome-webfont.svg" />
-    <Content Include="assets\js\breakpoints.min.js" />
-    <Content Include="assets\js\browser.min.js" />
-    <Content Include="assets\js\jquery.min.js" />
-    <Content Include="assets\js\main.js" />
-    <Content Include="assets\js\util.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -198,69 +200,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="images\banner.jpg" />
-    <Content Include="images\banner.mp4" />
-    <Content Include="images\bg.jpg" />
-    <Content Include="images\cta01.jpg" />
-    <Content Include="images\pic01.jpg" />
-    <Content Include="images\pic02.jpg" />
-    <Content Include="images\pic03.jpg" />
-    <Content Include="Models\ModelRHumanos.Context.tt">
+    <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelRHumanos.edmx</DependentUpon>
-      <LastGenOutput>ModelRHumanos.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\ModelRHumanos.tt">
+    <Content Include="Models\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelRHumanos.edmx</DependentUpon>
-      <LastGenOutput>ModelRHumanos.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\ModelRHumanos.edmx">
+    <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelRHumanos.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\ModelRHumanos.edmx.diagram">
-      <DependentUpon>ModelRHumanos.edmx</DependentUpon>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="assets\fonts\fontawesome-webfont.eot" />
-    <Content Include="assets\fonts\fontawesome-webfont.ttf" />
-    <Content Include="assets\fonts\fontawesome-webfont.woff" />
-    <Content Include="assets\fonts\fontawesome-webfont.woff2" />
-    <Content Include="assets\fonts\FontAwesome.otf" />
-    <Content Include="assets\sass\base\_page.scss" />
-    <Content Include="assets\sass\base\_reset.scss" />
-    <Content Include="assets\sass\base\_typography.scss" />
-    <Content Include="assets\sass\components\_actions.scss" />
-    <Content Include="assets\sass\components\_box.scss" />
-    <Content Include="assets\sass\components\_button.scss" />
-    <Content Include="assets\sass\components\_form.scss" />
-    <Content Include="assets\sass\components\_grid.scss" />
-    <Content Include="assets\sass\components\_highlights.scss" />
-    <Content Include="assets\sass\components\_icon.scss" />
-    <Content Include="assets\sass\components\_icons.scss" />
-    <Content Include="assets\sass\components\_image.scss" />
-    <Content Include="assets\sass\components\_inner.scss" />
-    <Content Include="assets\sass\components\_list.scss" />
-    <Content Include="assets\sass\components\_table.scss" />
-    <Content Include="assets\sass\components\_testimonials.scss" />
-    <Content Include="assets\sass\components\_wrapper.scss" />
-    <Content Include="assets\sass\layout\_banner.scss" />
-    <Content Include="assets\sass\layout\_cta.scss" />
-    <Content Include="assets\sass\layout\_footer.scss" />
-    <Content Include="assets\sass\layout\_header.scss" />
-    <Content Include="assets\sass\layout\_heading.scss" />
-    <Content Include="assets\sass\layout\_main.scss" />
-    <Content Include="assets\sass\layout\_menu.scss" />
-    <Content Include="assets\sass\libs\_breakpoints.scss" />
-    <Content Include="assets\sass\libs\_flexgrid.scss" />
-    <Content Include="assets\sass\libs\_functions.scss" />
-    <Content Include="assets\sass\libs\_grid.scss" />
-    <Content Include="assets\sass\libs\_mixins.scss" />
-    <Content Include="assets\sass\libs\_vars.scss" />
-    <Content Include="assets\sass\libs\_vendor.scss" />
-    <Content Include="assets\sass\main.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -283,52 +241,41 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Empleados\Create.cshtml" />
-    <Content Include="Views\Empleados\Delete.cshtml" />
-    <Content Include="Views\Empleados\Details.cshtml" />
-    <Content Include="Views\Empleados\Edit.cshtml" />
-    <Content Include="Views\Empleados\Index.cshtml" />
-    <Content Include="Views\Departamentoes\Create.cshtml" />
-    <Content Include="Views\Departamentoes\Delete.cshtml" />
-    <Content Include="Views\Departamentoes\Details.cshtml" />
-    <Content Include="Views\Departamentoes\Edit.cshtml" />
-    <Content Include="Views\Departamentoes\Index.cshtml" />
-    <Content Include="Views\Cargos\Create.cshtml" />
-    <Content Include="Views\Cargos\Delete.cshtml" />
-    <Content Include="Views\Cargos\Details.cshtml" />
-    <Content Include="Views\Cargos\Edit.cshtml" />
-    <Content Include="Views\Cargos\Index.cshtml" />
+    <Content Include="Views\Informes\Index.cshtml" />
     <Content Include="Views\Nominas\Create.cshtml" />
     <Content Include="Views\Nominas\Delete.cshtml" />
     <Content Include="Views\Nominas\Details.cshtml" />
     <Content Include="Views\Nominas\Edit.cshtml" />
     <Content Include="Views\Nominas\Index.cshtml" />
-    <Content Include="Views\salidas\Create.cshtml" />
-    <Content Include="Views\salidas\Delete.cshtml" />
-    <Content Include="Views\salidas\Details.cshtml" />
-    <Content Include="Views\salidas\Edit.cshtml" />
-    <Content Include="Views\salidas\Index.cshtml" />
-    <Content Include="Views\Vacaciones\Create.cshtml" />
-    <Content Include="Views\Vacaciones\Delete.cshtml" />
-    <Content Include="Views\Vacaciones\Details.cshtml" />
-    <Content Include="Views\Vacaciones\Edit.cshtml" />
-    <Content Include="Views\Vacaciones\Index.cshtml" />
+    <Content Include="Views\Nominas\Buscar.cshtml" />
+    <Content Include="Views\EmpleadosActivos\Create.cshtml" />
+    <Content Include="Views\EmpleadosActivos\Delete.cshtml" />
+    <Content Include="Views\EmpleadosActivos\Details.cshtml" />
+    <Content Include="Views\EmpleadosActivos\Edit.cshtml" />
+    <Content Include="Views\EmpleadosActivos\Index.cshtml" />
+    <Content Include="Views\EmpleadosActivos\Buscar.cshtml" />
+    <Content Include="Views\Departamentoes\Create.cshtml" />
+    <Content Include="Views\Departamentoes\Delete.cshtml" />
+    <Content Include="Views\Departamentoes\Details.cshtml" />
+    <Content Include="Views\Departamentoes\Edit.cshtml" />
+    <Content Include="Views\Departamentoes\Index.cshtml" />
     <Content Include="Views\Permisos\Create.cshtml" />
     <Content Include="Views\Permisos\Delete.cshtml" />
     <Content Include="Views\Permisos\Details.cshtml" />
     <Content Include="Views\Permisos\Edit.cshtml" />
     <Content Include="Views\Permisos\Index.cshtml" />
-    <Content Include="Views\Licencias\Create.cshtml" />
-    <Content Include="Views\Licencias\Delete.cshtml" />
-    <Content Include="Views\Licencias\Details.cshtml" />
-    <Content Include="Views\Licencias\Edit.cshtml" />
-    <Content Include="Views\Licencias\Index.cshtml" />
-    <Content Include="Views\Nominas\Buscar.cshtml" />
-    <Content Include="Views\Empleados\Buscar.cshtml" />
     <Content Include="Views\Permisos\Buscar.cshtml" />
+    <Content Include="Views\Cargos\Create.cshtml" />
+    <Content Include="Views\Cargos\Delete.cshtml" />
+    <Content Include="Views\Cargos\Details.cshtml" />
+    <Content Include="Views\Cargos\Edit.cshtml" />
+    <Content Include="Views\Cargos\Index.cshtml" />
+    <Content Include="Views\salidas\Create.cshtml" />
+    <Content Include="Views\salidas\Delete.cshtml" />
+    <Content Include="Views\salidas\Details.cshtml" />
+    <Content Include="Views\salidas\Edit.cshtml" />
+    <Content Include="Views\salidas\Index.cshtml" />
+    <Content Include="Views\salidas\Buscar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

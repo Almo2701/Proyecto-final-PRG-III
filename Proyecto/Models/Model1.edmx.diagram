@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4e28c64b3d8942c9bdd1a6be941e0aeb" Name="Diagram1">
+        <EntityTypeShape EntityType="RRHHPROGIIIModel.Cargos" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RRHHPROGIIIModel.Departamento" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RRHHPROGIIIModel.Empleados" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RRHHPROGIIIModel.Licencias" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RRHHPROGIIIModel.Nomina" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RRHHPROGIIIModel.Permisos" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RRHHPROGIIIModel.salida" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RRHHPROGIIIModel.Vacaciones" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
+        <AssociationConnector Association="RRHHPROGIIIModel.FK__Empleados__Cargo__1FCDBCEB" ManuallyRouted="false" />
+        <AssociationConnector Association="RRHHPROGIIIModel.FK__Empleados__Depar__20C1E124" ManuallyRouted="false" />
+        <AssociationConnector Association="RRHHPROGIIIModel.FK__Licencias__Emple__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="RRHHPROGIIIModel.FK__Permisos__Emplea__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="RRHHPROGIIIModel.FK__salida__Empleado__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="RRHHPROGIIIModel.FK__Vacacione__Emple__22AA2996" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

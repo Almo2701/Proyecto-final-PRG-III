@@ -1,0 +1,88 @@
+SELECT *
+FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+WHERE TABLE_NAME = 'Empleados'
+--tabla empleados 
+Create table Empleados(  
+Nombre Varchar(100) not null,
+Apellido Varchar(100) not null,
+Telefono Varchar(100) not null,
+Fecha_ingreso date not null,
+Cargo int not null,
+Departamento int not null,
+Estatus varchar (100)  not null,
+Codigo_Empleado int primary key )
+
+
+ALTER TABLE Empleados
+ADD FOREIGN KEY (Cargo) REFERENCES Cargos(id);
+
+ALTER TABLE Empleados
+ADD FOREIGN KEY (Departamento) REFERENCES Departamento(Codigo_Departamento);
+
+alter table Empleados
+add constraint checkaño
+CHECK (Estatus in ('Activo' ,'Inactivo'))
+--tabla Departamento
+create table Departamento (Codigo_departamento int primary key IDENTITY,
+ Nombre varchar(100))
+
+ -- tabla cargos
+ Create table Cargos (id int primary key IDENTITY, Cargo varchar(200))
+
+ --tabla vacaciones
+
+ create table Vacaciones (Año date,
+Comentarios Varchar(100),
+Empleado int,
+Fecha_Inicio date,
+Fecha_Final date,
+id int primary key IDENTITY)
+
+ ALTER TABLE Vacaciones
+ADD FOREIGN KEY (Empleado) REFERENCES Empleados(Codigo_Empleado);
+
+--tabla nomina
+create table Nomina (id int primary key IDENTITY, Año int not null, 
+Mes int not null,Monto_Total int not null )
+
+alter table Nomina 
+add constraint checkMes
+check (Mes>=1 and Mes<=12)
+
+alter table Nomina 
+add constraint checkañoB
+check (Año>2000)
+
+
+--tabla salidas
+
+create table salida(id int primary key IDENTITY, Empleado int,Fecha_Salida date,
+Motivo varchar(100), Tipo_Salida varchar(100))
+
+ALTER TABLE Salida
+ADD FOREIGN KEY (Empleado) REFERENCES Empleados(Codigo_Empleado);
+
+alter table Salida
+add constraint checkTipoSalida
+check (Tipo_Salida in ('Renuncia','Despido','Desahucio'))
+
+--tabla permisos
+
+Create table Permisos (id int primary key IDENTITY,
+Comentarios varchar(100),
+Empleado int,
+Fecha_Inicio date, 
+Fecha_Final date)
+
+ALTER TABLE Permisos
+ADD FOREIGN KEY (Empleado) REFERENCES Empleados(Codigo_Empleado);
+--tabla licencias
+create table Licencias (id int primary key IDENTITY,Comentarios varchar(100),
+Empleado int,
+Fecha_Inicio date,
+Fecha_Final date ,
+Motivo varchar(100))
+
+ALTER TABLE Licencias
+ADD FOREIGN KEY (Empleado) REFERENCES Empleados(Codigo_Empleado);
+
