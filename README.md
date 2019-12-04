@@ -1,2 +1,2 @@
-# Proyecto-final-PRG-III
-Repositorio para proyecto final de programacion III 
+# Proyecto-Final-PROG-III
+Repositorio para Proyecto Final de Programacion III 
